@@ -16,3 +16,7 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
+
+h2:focus {
+  outline: none;
+}
