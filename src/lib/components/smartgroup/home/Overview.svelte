@@ -6,7 +6,6 @@
   import Intro from "./cards/Intro.svelte";
   import Explained from "./cards/Explained.svelte";
   import Contact from "./cards/Contact.svelte";
-  import ContactCards from "./cards/ContactCards.svelte";
 
   /* Logic to show the div */
   let isDivVisible = false;
