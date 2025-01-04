@@ -52,7 +52,7 @@
         </div>
       </div>
     </div>
-    <div class="hidden lg:flex fixed right-12 top-6">
+    <div class="hidden lg:flex absolute right-12 top-6">
       <VideoPlayer />
     </div>
   </div>

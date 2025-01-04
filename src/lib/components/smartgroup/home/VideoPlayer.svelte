@@ -1,10 +1,14 @@
 <script>
 // @ts-nocheck
+  import Draggable from "svelte-draggable";
 
-    import { onMount } from "svelte";
-    import PlayPause from "$lib/icons/PlayPause.svelte";
-    import Volume from "$lib/icons/Volume.svelte";
-    import { blur, fly } from 'svelte/transition';
+
+  import { onMount } from "svelte";
+  import PlayPause from "$lib/icons/PlayPause.svelte";
+  import Volume from "$lib/icons/Volume.svelte";
+  import { blur, fly } from 'svelte/transition';
+  import ArrowRight from "$lib/icons/ArrowRight.svelte";
+  import HideVideo from "$lib/components/smartbuttons/HideVideo.svelte";
 
     /**
      * @type {HTMLVideoElement}
@@ -42,13 +46,13 @@
       opacity: 1;
     }
   </style>
-  <div class="w-[444px] h-[666px] rounded-2xl border-2 border-white/20 text-center bg-black">
+  <div class="h-[90vh] rounded-2xl border-2 border-white/20 text-center bg-black">
     <!-- svelte-ignore a11y_no_static_element_interactions -->
     <div class="relative video-container m-2" on:mouseenter={() => isHovered = true} on:mouseleave={() => isHovered = false}>
       <video bind:this={videoElement} class="rounded-xl" autoplay muted loop>
         <source src="/assets/main/kurzgesagt.mp4" type="video/mp4" />
       </video>
-      <div class="absolute top-0 left-0 right-0 flex justify-between items-center controls" transition:blur={{ duration: 300 }}>
+      <div class="absolute top-0 left-0 right-0 flex justify-between items-center controls bg-blue-500/20 rounded-xl" transition:blur={{ duration: 300 }}>
         <div class="p-3">
           <PlayPause {isPlaying} {togglePlayPause} />
         </div>
@@ -63,5 +67,10 @@
           <Volume {volume} {setVolume} />
         </div>
       </div>
+    </div>
+    <div class="flex justify-center items-center w-full">
+      <button class="m-2">
+        <HideVideo />
+      </button>
     </div>
   </div>
