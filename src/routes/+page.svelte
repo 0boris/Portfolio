@@ -10,8 +10,12 @@
   import Music from "$lib/components/smartbuttons/Music.svelte";
 
   import Time from "$lib/components/Time.svelte";
-  import Info from "$lib/icons/Info.svelte"; // About this website icon
-  import Delete from "$lib/icons/Delete.svelte"; // Close current Smart group icon
+  import Info from "$lib/icons/Info.svelte";
+
+  let isSmartGroupHomeOpen = false;
+  let isSmartGroupMeOpen = false;
+
+  $: isAnySmartGroupOpen = !isSmartGroupAboutOpen && !isSmartGroupMeOpen;
 
   import Overview from "$lib/components/smartgroup/home/Overview.svelte";
 
@@ -19,6 +23,9 @@
   import { fly } from "svelte/transition";
 
   let showScrollText = true;
+  let showInput = false;
+  let inputValue = "";
+  let showPopup = false;
 
   /* Use onMount function to prevent error { window is not defined } */
   onMount(() => {
@@ -35,10 +42,24 @@
       }
     };
 
+    const handleKeydown = (event) => {
+      if (event.key === "q" && event.ctrlKey) {
+        // Ctrl+K as the shortcut
+        showInput = true;
+        setTimeout(() => {
+          document.getElementById("shortcut-input").focus();
+        }, 0);
+      } else if (event.key === "Escape") {
+        showInput = false;
+      }
+    };
+
     window.addEventListener("scroll", handleScroll);
+    window.addEventListener("keydown", handleKeydown);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("keydown", handleKeydown);
     };
   });
 
@@ -51,6 +72,13 @@
 
   const scrollToTop = () => {
     window.scrollTo(0, 0);
+  };
+
+  const executeCommand = () => {
+    if (inputValue.trim().toLowerCase() === "open popup") {
+      showPopup = true;
+      showInput = false;
+    }
   };
 </script>
 
@@ -69,6 +97,40 @@
     >
       Scroll down to see more.
     </span>
+  {/if}
+
+  {#if showInput}
+    <div
+      class="fixed inset-0 flex items-center justify-center z-50"
+      transition:fly={{ y: 200, duration: 500 }}
+    >
+      <input
+        id="shortcut-input"
+        type="text"
+        placeholder="Type a command here..."
+        bind:value={inputValue}
+        class="p-3 text-sm rounded-lg bg-black text-white outline-none w-[40rem]"
+        on:keydown={(e) => e.key === "Enter" && executeCommand()}
+      />
+    </div>
+  {/if}
+
+  {#if showPopup}
+    <div
+      class="fixed inset-0 flex items-center justify-center z-50 backdrop-blur-md text-white"
+    >
+      <div
+        class="bg-black border-2 border-white/20 p-6 rounded-lg w-[44rem]"
+        transition:fly={{ y: 200, duration: 500 }}
+      >
+        <h2 class="opacity-80 mb-2">Popup Title</h2>
+        <p class="text-md">This is an example popup opened by the command.</p>
+        <button
+          class="mt-4 rounded-full transition-all duration-300 bg-red-500/50 hover:bg-red-500/30 py-2 px-4 text-sm font-bold"
+          on:click={() => (showPopup = false)}>Close</button
+        >
+      </div>
+    </div>
   {/if}
 
   <div class="fixed bottom-0 left-0 right-0 flex justify-center items-end z-50">
@@ -98,10 +160,7 @@
 </div>
 
 <div id="overview" class="h-screen bg-black -z-50">
-  <div
-    class="h-screen bg-default bg-cover -z-50 flex p-4"
-  >
+  <div class="h-screen bg-default bg-cover -z-50 flex p-4">
     <Overview />
   </div>
 </div>
-

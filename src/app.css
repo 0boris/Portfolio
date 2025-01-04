@@ -20,3 +20,11 @@
 h2:focus {
   outline: none;
 }
+
+.moveable-line {
+  width: 0px !important;
+}
+
+.moveable-control {
+  visibility: hidden !important;
+}

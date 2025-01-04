@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Delete from "$lib/icons/Delete.svelte";
+  import Cross from "$lib/icons/Cross.svelte";
   import ContactCards from "./ContactCards.svelte";
   import { blur, fly } from "svelte/transition";
 
@@ -30,12 +30,13 @@
 </script>
 
 <div
-  class="border-2 border-white/20 rounded-lg p-4 space-y-1 !bg-black bg-mesh transition-all duration-500 bg-size-200 bg-pos-50 hover:bg-pos-100 relative left-28"
+  class="border-2 border-white/20 rounded-lg p-4 space-y-1 transition-all duration-500 bg-gradient-to-br from-black via-purple-700 to-indigo-600 bg-size-200 bg-pos-0 hover:bg-pos-100  relative left-28"
 >
   <h1 class="text-2xl font-bold mb-2">Get in touch</h1>
   <!-- svelte-ignore a11y_click_events_have_key_events -->
   <!-- svelte-ignore a11y_no_static_element_interactions -->
   <div
+    transition:blur={{ duration: 1000, delay: 1500 }}
     on:click={() =>
       navigator.clipboard
         .writeText("boris@0boris.xyz")
@@ -48,7 +49,7 @@
   </div>
   <!-- svelte-ignore a11y_click_events_have_key_events -->
   <!-- svelte-ignore a11y_no_static_element_interactions -->
-  <div on:click={() => togglePopup("github.com/0boris")}>
+  <div transition:blur={{ duration: 1000, delay: 1750 }} on:click={() => togglePopup("github.com/0boris")}>
     <ContactCards type="Github" name="@0boris" address="github.com/0boris" />
   </div>
 </div>
