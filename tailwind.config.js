@@ -22,7 +22,8 @@ export default {
         'pos-100': '100% 100%',
       },
       backgroundImage: {
-        'mesh': 'url("/assets/main/gradient.webp")',
+        'default': 'url("/assets/main/background.jpg")',
+        'mesh': 'url("/assets/gradients/gradient.webp")',
         'mesh-green': 'url("/assets/gradients/green.webp")',
         'mesh-red': 'url("/assets/gradients/red.webp")',
         'mesh-blue': 'url("/assets/gradients/blue.webp")',

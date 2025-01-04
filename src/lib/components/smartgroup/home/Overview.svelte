@@ -17,7 +17,7 @@
 
 <div
   on:pointerenter={renderDiv}
-  class="bg-black/10 text-white h-full w-full p-4 rounded-2xl border-2 border-white/10 backdrop-blur-lg bg-mesh bg-cover"
+  class="bg-black/10 text-white h-full w-full p-4 rounded-2xl border-2 border-white/10 backdrop-blur-xl bg-cover"
 >
   {#if isDivVisible}
   <div class="flex flex-row">
@@ -48,7 +48,6 @@
         <div class="row-span-1 col-span-1 md:row-start-1 md:col-start-2">
           <div class="space-y-4">
             <Contact />
-
           </div>
         </div>
       </div>

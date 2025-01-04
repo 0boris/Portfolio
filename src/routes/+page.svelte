@@ -99,8 +99,9 @@
 
 <div id="overview" class="h-screen bg-black -z-50">
   <div
-    class="h-screen -z-50 flex p-4"
+    class="h-screen bg-default bg-cover -z-50 flex p-4"
   >
     <Overview />
   </div>
 </div>
+

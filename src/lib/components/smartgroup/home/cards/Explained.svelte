@@ -23,7 +23,7 @@
               <div class="h-9 w-9">
                 <Home />
               </div>
-              <div class="ml-3">
+              <div class="ml-3 font-bold">
                 You're here.
               </div>
             </li>

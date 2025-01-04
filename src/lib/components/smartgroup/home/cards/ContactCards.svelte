@@ -1,5 +1,6 @@
 <script lang="ts">
     export let type: string
+    export let name: string
     export let address: string
 </script>
 
@@ -12,5 +13,5 @@
     }}
 >
     <h1 class="text-3xl font-bold">{type}</h1>
-    <p class="opacity-50 text-sm">{address}</p>
+    <p class="opacity-50 text-sm">{name}</p>
 </div>
