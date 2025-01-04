@@ -1,6 +1,5 @@
-<script>
+<script lang="ts">
   import { onMount } from "svelte";
-  import { redirect } from "@sveltejs/kit";
 
   /* Import components for the smartbar + overview */
   import Home from "$lib/components/smartbuttons/Home.svelte";
@@ -11,11 +10,6 @@
 
   import Time from "$lib/components/Time.svelte";
   import Info from "$lib/icons/Info.svelte";
-
-  let isSmartGroupHomeOpen = false;
-  let isSmartGroupMeOpen = false;
-
-  $: isAnySmartGroupOpen = !isSmartGroupAboutOpen && !isSmartGroupMeOpen;
 
   import Overview from "$lib/components/smartgroup/home/Overview.svelte";
 
@@ -42,12 +36,12 @@
       }
     };
 
-    const handleKeydown = (event) => {
+    const handleKeydown = (event: KeyboardEvent) => {
       if (event.key === "q" && event.ctrlKey) {
         // Ctrl+K as the shortcut
         showInput = true;
         setTimeout(() => {
-          document.getElementById("shortcut-input").focus();
+          document.getElementById("shortcut-input")?.focus();
         }, 0);
       } else if (event.key === "Escape") {
         showInput = false;

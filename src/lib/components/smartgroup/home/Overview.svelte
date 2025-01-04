@@ -1,7 +1,4 @@
 <script lang="ts">
-  /* Exports for global usage. */
-  export let isSmartGroupHomeOpen: boolean;
-
   /* Imports for animations. */
   import { fly, blur } from "svelte/transition";
 
