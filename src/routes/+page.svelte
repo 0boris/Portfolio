@@ -7,11 +7,16 @@
   import Projects from "$lib/components/smartbuttons/Projects.svelte";
   import Team from "$lib/components/smartbuttons/Team.svelte";
   import Music from "$lib/components/smartbuttons/Music.svelte";
+  import Cross from "$lib/icons/Cross.svelte";
 
   import Time from "$lib/components/Time.svelte";
   import Info from "$lib/icons/Info.svelte";
 
   import Overview from "$lib/components/smartgroup/home/Overview.svelte";
+  import AboutMe from "$lib/components/smartgroup/me/AboutMe.svelte";
+  import ProjectsPage from "$lib/components/smartgroup/projects/Projects.svelte";
+  import TeamPage from "$lib/components/smartgroup/team/Team.svelte";
+  import MusicPage from "$lib/components/smartgroup/music/Music.svelte";
 
   /* Scroll effect for the tooltip */
   import { fly } from "svelte/transition";
@@ -20,6 +25,7 @@
   let showInput = false;
   let inputValue = "";
   let showPopup = false;
+  let activeSmartGroup = "";
 
   /* Use onMount function to prevent error { window is not defined } */
   onMount(() => {
@@ -30,7 +36,7 @@
     const handleScroll = () => {
       if (window.scrollY > 100) {
         showScrollText = true;
-        scrollToOverview();
+        openSmartGroup("home");
       } else {
         showScrollText = false;
       }
@@ -73,6 +79,14 @@
       showPopup = true;
       showInput = false;
     }
+  };
+
+  const openSmartGroup = (group: string) => {
+    activeSmartGroup = group;
+  };
+
+  const closeSmartGroup = () => {
+    activeSmartGroup = "";
   };
 </script>
 
@@ -134,11 +148,91 @@
       <Time />
       <div class="flex space-x-12 md:space-x-48">
         <div class="flex space-x-2">
-          <Home />
-          <Person />
-          <Projects />
-          <Team />
-          <Music />
+          {#if activeSmartGroup === "home"}
+            <button
+              type="button"
+              on:click={closeSmartGroup}
+              aria-label="Close Home Group"
+            >
+              <Home />
+            </button>
+          {:else}
+            <button
+              type="button"
+              on:click={() => openSmartGroup("home")}
+              aria-label="Open Home Group"
+            >
+              <Home isActive={true} />
+            </button>
+          {/if}
+          {#if activeSmartGroup === "about"}
+            <button
+              type="button"
+              on:click={closeSmartGroup}
+              aria-label="Close About Group"
+            >
+              <Person />
+            </button>
+          {:else}
+            <button
+              type="button"
+              on:click={() => openSmartGroup("about")}
+              aria-label="Open About Group"
+            >
+              <Person isActive={true} />
+            </button>
+          {/if}
+          {#if activeSmartGroup === "projects"}
+            <button
+              type="button"
+              on:click={closeSmartGroup}
+              aria-label="Close Projects Group"
+            >
+              <Projects />
+            </button>
+          {:else}
+            <button
+              type="button"
+              on:click={() => openSmartGroup("projects")}
+              aria-label="Open Projects Group"
+            >
+              <Projects isActive={true} />
+            </button>
+          {/if}
+          {#if activeSmartGroup === "team"}
+            <button
+              type="button"
+              on:click={closeSmartGroup}
+              aria-label="Close Team Group"
+            >
+              <Team />
+            </button>
+          {:else}
+            <button
+              type="button"
+              on:click={() => openSmartGroup("team")}
+              aria-label="Open Team Group"
+            >
+              <Team isActive={true} />
+            </button>
+          {/if}
+          {#if activeSmartGroup === "music"}
+            <button
+              type="button"
+              on:click={closeSmartGroup}
+              aria-label="Close Music Group"
+            >
+              <Music />
+            </button>
+          {:else}
+            <button
+              type="button"
+              on:click={() => openSmartGroup("music")}
+              aria-label="Open Music Group"
+            >
+              <Music isActive={true} />
+            </button>
+          {/if}
         </div>
 
         <div class="flex space-x-2">
@@ -155,6 +249,20 @@
 
 <div id="overview" class="h-screen bg-black -z-50">
   <div class="h-screen bg-default bg-cover -z-50 flex p-4">
-    <Overview />
+    <div
+      class="bg-black/10 text-white h-full w-full p-4 rounded-2xl border-2 border-white/10 backdrop-blur-xl bg-cover"
+    >
+      {#if activeSmartGroup === "home"}
+        <Overview />
+      {:else if activeSmartGroup === "about"}
+        <AboutMe />
+      {:else if activeSmartGroup === "projects"}
+        <ProjectsPage />
+      {:else if activeSmartGroup === "team"}
+        <TeamPage />
+      {:else if activeSmartGroup === "music"}
+        <MusicPage />
+      {/if}
+    </div>
   </div>
 </div>

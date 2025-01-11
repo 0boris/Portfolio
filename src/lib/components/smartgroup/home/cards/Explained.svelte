@@ -21,7 +21,7 @@
         <ul class="mt-4 space-y-2 text-xs lg:text-lg">
             <li class="flex items-center text-white bg-white/20 rounded-md p-2">
               <div class="h-9 w-9">
-                <Home />
+                <Home isActive={true} />
               </div>
               <div class="ml-3 font-bold">
                 You're here.
@@ -29,7 +29,7 @@
             </li>
             <li class="flex items-center text-white bg-white/20 rounded-md p-2">
               <div class="h-9 w-9">
-                <Person />
+                <Person isActive={true} />
               </div>
               <div class="ml-3">
                 Find out more about me.
@@ -37,7 +37,7 @@
             </li>
             <li class="flex items-center text-white bg-white/20 rounded-md p-2">
               <div class="h-9 w-9">
-                <Folder />
+                <Folder isActive={true} />
               </div>
               <div class="ml-3">
                 A collection of my previous work.
@@ -45,7 +45,7 @@
             </li>
             <li class="flex items-center text-white bg-white/20 rounded-md p-2">
               <div class="h-9 w-9">
-                <Team />
+                <Team isActive={true} />
               </div>
               <div class="ml-3">
                 Find out about people who have helped me along my journey.
@@ -53,7 +53,7 @@
             </li>
             <li class="flex items-center text-white bg-white/20 rounded-md p-2">
               <div class="h-9 w-9">
-                <Music />
+                <Music isActive={true} />
               </div>
               <div class="ml-3">
                 My activity. The icon changes depending on what I'm doing.

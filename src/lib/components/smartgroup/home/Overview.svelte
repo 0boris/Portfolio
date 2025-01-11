@@ -17,7 +17,7 @@
 
 <div
   on:pointerenter={renderDiv}
-  class="bg-black/10 text-white h-full w-full p-4 rounded-2xl border-2 border-white/10 backdrop-blur-xl bg-cover"
+  class="text-white h-full w-full"
 >
   {#if isDivVisible}
   <div class="flex flex-row">
