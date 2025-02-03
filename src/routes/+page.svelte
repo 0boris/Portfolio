@@ -253,7 +253,7 @@
       class="bg-black/10 text-white h-full w-full p-4 rounded-2xl border-2 border-white/10 backdrop-blur-xl bg-cover"
     >
       {#if activeSmartGroup === "home"}
-        <Overview {activeSmartGroup} />
+        <Overview />
       {:else if activeSmartGroup === "about"}
         <AboutMe />
       {:else if activeSmartGroup === "projects"}

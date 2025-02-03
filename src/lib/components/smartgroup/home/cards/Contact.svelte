@@ -30,7 +30,7 @@
 </script>
 
 <div
-  class="border-2 border-white/20 rounded-lg p-4 space-y-1 transition-all duration-500 bg-default from-black via-purple-700 to-indigo-600 bg-size-200 bg-pos-0 hover:bg-pos-50"
+  class="border-2 border-white/20 rounded-lg p-4 space-y-1 transition-all duration-500 bg-gradient-to-br from-black via-purple-700 to-indigo-600 bg-size-200 bg-pos-0 hover:bg-pos-100  relative left-28"
 >
   <h1 class="text-2xl font-bold mb-2">Get in touch</h1>
   <!-- svelte-ignore a11y_click_events_have_key_events -->

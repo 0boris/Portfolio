@@ -7,7 +7,7 @@
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <div
-    class="border-2 border-white/20 rounded-lg p-4 !bg-black/20 backdrop-blur-3xl transition-all duration-500 bg-size-200 bg-pos-50 hover:bg-pos-100 hover:cursor-pointer"
+    class="border-2 border-white/20 rounded-lg p-4 !bg-black bg-mesh-blue transition-all duration-500 bg-size-200 bg-pos-50 hover:bg-pos-100 hover:cursor-pointer"
     on:click={() => {
         navigator.clipboard.writeText(address);
     }}
