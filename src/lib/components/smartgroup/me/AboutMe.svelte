@@ -1,7 +1,4 @@
-<script>
-    export let isActive = false;
-  </script>
-  
+ 
   <div class="aboutme-container">
     <h1 class="title">About Me</h1>
     <p class="description">This is the about me page content.</p>

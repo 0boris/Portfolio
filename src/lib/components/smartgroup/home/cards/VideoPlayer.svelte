@@ -7,15 +7,7 @@
   import { blur, fly } from "svelte/transition";
   import HideVideo from "$lib/components/smartbuttons/HideVideo.svelte";
   import ShowVideo from "$lib/components/smartbuttons/ShowVideo.svelte";
-  import Moveable from "svelte-moveable";
   
-
-  const draggable = true;
-  const throttleDrag = 1;
-  const edgeDraggable = false;
-  const startDragRotate = 0;
-  const throttleDragRotate = 0;
-  let targetRef = null;
   /**
    * @type {HTMLVideoElement}
    */
@@ -58,7 +50,7 @@
 
 {#if isVisible}
   <div
-    class="w-[50vh] rounded-2xl border-2 border-white/20 text-center bg-black target"
+    class="w-[70vh] rounded-2xl border-2 border-white/20 text-center bg-black target"
     transition:fly={{ x: 500, duration: 1000 }}
     bind:this={targetRef}
   >
@@ -69,7 +61,7 @@
       on:mouseleave={() => (isHovered = false)}
       >
       <video bind:this={videoElement} class="rounded-xl" autoplay muted loop>
-        <source src="/assets/main/kurzgesagt.mp4" type="video/mp4" />
+        <source src="/assets/main/Kurzgesagt.webm" type="video/webm" />
       </video>
       <div
         class="absolute top-0 left-0 right-0 flex justify-between items-center controls bg-blue-500/20 rounded-xl"
@@ -98,17 +90,6 @@
         </div>
       </div>
     </div>
-    <Moveable
-      target={targetRef}
-      {draggable}
-      {throttleDrag}
-      {edgeDraggable}
-      {startDragRotate}
-      {throttleDragRotate}
-      on:drag={({ detail: e }) => {
-        e.target.style.transform = e.transform;
-      }}
-    />
     <div class="flex justify-center items-center w-full">
       <button class="m-2" on:click={hideVideo}>
         <HideVideo />
