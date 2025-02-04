@@ -18,7 +18,7 @@
 <div on:pointerenter={renderDiv} class="text-white h-full w-full">
   {#if isDivVisible}
     <div class="flex flex-row">
-      <div class="w-full lg:w-4/6 p-0 lg:p-5">
+      <div class="w-full p-0 lg:p-5">
         <div
           class="text-white text-md lg:text-2xl font-bold mb-2 lg:mb-4"
           transition:fly={{ y: 200, duration: 500, delay: 300 }}
@@ -32,7 +32,7 @@
           Here's what's going on here.
         </span>
 
-        <div>
+        <div class="w-full">
           <div
             class="text-white text-sm lg:text-lg mt-6 font-medium grid grid-cols-1 md:grid-cols-2 gap-4"
           >
@@ -48,20 +48,11 @@
             >
               <Explained />
             </div>
-            <div
-              transition:fly={{ y: -500, duration: 1000, delay: 1000 }}
-              class="row-span-1 col-span-1 md:row-start-1 md:col-start-2"
-            >
-              <Contact />
+            <div class="row-span-2 col-span-1" transition:fly={{ x: 250, duration: 500, delay: 1250 }}>
+              <VideoPlayer />
             </div>
           </div>
         </div>
-      </div>
-      <div
-        transition:fly={{ x: 250, duration: 500, delay: 1250 }}
-        class="hidden lg:inline fixed bottom-12 right-6"
-      >
-        <VideoPlayer />
       </div>
     </div>
   {/if}

@@ -50,13 +50,11 @@
 
 {#if isVisible}
   <div
-    class="w-[70vh] rounded-2xl border-2 border-white/20 text-center bg-black target"
-    transition:fly={{ x: 500, duration: 1000 }}
-    bind:this={targetRef}
+    class="w-[70vh] rounded-2xl p-2 border-2 border-white/20 text-center bg-black target"
   >
     <!-- svelte-ignore a11y_no_static_element_interactions -->
     <div
-      class="relative video-container m-2 transform-gpu"
+      class="video-container transform-gpu"
       on:mouseenter={() => (isHovered = true)}
       on:mouseleave={() => (isHovered = false)}
       >

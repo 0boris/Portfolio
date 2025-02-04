@@ -3,7 +3,7 @@
 >
     <h1 class="text-2xl font-bold mb-2 text-center">Intro</h1>
     Welcome, this is my website. It's mostly stuff about ambitions, passions, and
-    exhibiting my previous work.a
+    exhibiting my previous work.
     <span class="font-normal opacity-50"
         >(you may like to call this showing off)</span
     >
