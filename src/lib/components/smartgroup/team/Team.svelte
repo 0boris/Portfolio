@@ -1,7 +1,4 @@
-<script>
-    export let isActive = false;
-  </script>
-  
+ 
   <div class="teampage-container">
     <h1 class="title">Team Page</h1>
     <p class="description">This is the team page content.</p>

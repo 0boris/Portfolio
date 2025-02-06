@@ -29,31 +29,56 @@
   };
 </script>
 
-<div
-  class="border-2 border-white/20 rounded-lg p-4 space-y-1 transition-all duration-500 bg-gradient-to-br from-black via-purple-700 to-indigo-600 bg-size-200 bg-pos-0 hover:bg-pos-100  relative left-28"
->
-  <h1 class="text-2xl font-bold mb-2">Get in touch</h1>
-  <!-- svelte-ignore a11y_click_events_have_key_events -->
-  <!-- svelte-ignore a11y_no_static_element_interactions -->
+<div class="text-center">
   <div
-    transition:blur={{ duration: 1000, delay: 1500 }}
-    on:click={() =>
-      navigator.clipboard
-        .writeText("boris@0boris.xyz")
-        .then(() => (success = true))
-        .then(() => (showtitle = true))
-        .then(() => setTimeout(() => (showtitle = false), 2200))
-        .then(() => setTimeout(() => (success = false), 5000))}
+    class="border-2 border-white/20 rounded-lg bg-black/40"
   >
-    <ContactCards type="Email" name="@0boris.xyz" address="boris@0boris.xyz" />
-  </div>
-  <!-- svelte-ignore a11y_click_events_have_key_events -->
-  <!-- svelte-ignore a11y_no_static_element_interactions -->
-  <div transition:blur={{ duration: 1000, delay: 1750 }} on:click={() => togglePopup("github.com/0boris")}>
-    <ContactCards type="Github" name="@0boris" address="github.com/0boris" />
-  </div>
+    <div class="space-y-1 backdrop-blur-md p-4 rounded-lg">
+      <h1 class="text-2xl font-bold mb-2">Get in touch</h1>
+      <!-- svelte-ignore a11y_click_events_have_key_events -->
+      <!-- svelte-ignore a11y_no_static_element_interactions -->
+      <div
+        transition:blur={{ duration: 1000, delay: 1500 }}
+        on:click={() =>
+          navigator.clipboard
+            .writeText("boris@0boris.xyz")
+            .then(() => (success = true))
+            .then(() => (showtitle = true))
+            .then(() => setTimeout(() => (showtitle = false), 2200))
+            .then(() => setTimeout(() => (success = false), 5000))}
+      >
+        <ContactCards
+          type="Email"
+          name="@0boris.xyz"
+          address="boris@0boris.xyz"
+        />
+      </div>
+      <!-- svelte-ignore a11y_click_events_have_key_events -->
+      <!-- svelte-ignore a11y_no_static_element_interactions -->
+      <div
+        transition:blur={{ duration: 1000, delay: 1750 }}
+        on:click={() => togglePopup("github.com/0boris")}
+      >
+        <ContactCards
+          type="Github"
+          name="@0boris"
+          address="github.com/0boris"
+        />
+      </div>
+    </div>
+  </div><!--
+  <span class="text-xs opacity-30">
+    Photo by <a
+      href="https://unsplash.com/@fakurian?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+      >Milad Fakurian</a
+    >
+    on
+    <a
+      href="https://unsplash.com/photos/purple-and-white-heart-illustration-nY14Fs8pxT8?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+      >Unsplash</a
+    >
+  </span>-->
 </div>
-
 {#if showPopup}
   <div
     class="fixed inset-0 flex items-center backdrop-blur-md justify-center z-50"
@@ -93,21 +118,25 @@
 {/if}
 
 {#if success}
-  <div class="fixed right-12 bottom-12 p-4 bg-white/10 text-white border border-white/30 rounded-lg" transition:fly={{ y:200, duration: 500}}>
-    <div
-    transition:blur={{ duration: 500, delay: 50 }}
+  <div
+    class="fixed right-12 bottom-12 p-4 bg-white/10 text-white border border-white/30 rounded-lg"
+    transition:fly={{ y: 200, duration: 500 }}
   >
-    {#if showtitle}
-      <h1
-        transition:blur={{ duration: 500, delay: 100 }}
-        class="text-lg font-semibold"
+    <div transition:blur={{ duration: 500, delay: 50 }}>
+      {#if showtitle}
+        <h1
+          transition:blur={{ duration: 500, delay: 100 }}
+          class="text-lg font-semibold"
+        >
+          Action completed.
+        </h1>
+      {/if}
+      <p
+        transition:blur={{ duration: 500, delay: 200 }}
+        class="text-sm font-light"
       >
-        Action completed.
-      </h1>
-    {/if}
-    <p transition:blur={{ duration: 500, delay: 200 }} class="text-sm font-light">
-      The text was copied to the clipboard successfully.
-    </p>
-  </div>
+        The text was copied to the clipboard successfully.
+      </p>
+    </div>
   </div>
 {/if}

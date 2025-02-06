@@ -8,11 +8,11 @@
 </script>
 
 <div
-    class="border-2 border-white/20 rounded-lg p-4 w-[42rem] !bg-black bg-mesh-red transition-all duration-500 bg-size-200 bg-pos-50 hover:bg-pos-100"
+    class="border-2 border-white/20 rounded-lg p-4 w-[42rem] h-full !bg-black bg-mesh-red transition-all duration-500 bg-size-200 bg-pos-50 hover:bg-pos-100"
 >
     <h1
         transition:blur={{ duration: 1000, delay: 650 }}
-        class="text-2xl font-bold mb-2"
+        class="text-2xl font-bold mb-2 text-center"
     >
         Smart Bar Functions
     </h1>

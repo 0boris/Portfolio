@@ -1,7 +1,4 @@
-<script>
-    export let isActive = false;
-  </script>
-  
+ 
   <div class="projectspage-container">
     <h1 class="title">Projects</h1>
     <p class="description">This is the projects page content.</p>

@@ -23,6 +23,7 @@ export default {
       },
       backgroundImage: {
         'default': 'url("/assets/main/background.jpg")',
+        'contact': 'url("/assets/main/background-2.jpg")',
         'mesh': 'url("/assets/gradients/gradient.webp")',
         'mesh-green': 'url("/assets/gradients/green.webp")',
         'mesh-red': 'url("/assets/gradients/red.webp")',
