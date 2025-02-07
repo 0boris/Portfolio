@@ -30,7 +30,7 @@ export default {
         'mesh-blue': 'url("/assets/gradients/blue.webp")',
         'mesh-yellow': 'url("/assets/gradients/yellow.webp")',
       }
-    },
+    }
   },
   plugins: [],
 }

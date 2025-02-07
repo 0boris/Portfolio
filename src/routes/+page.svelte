@@ -143,7 +143,7 @@
 
   <div class="fixed bottom-0 left-0 right-0 flex justify-center items-end z-50">
     <div
-      class="bg-[#191919] text-[#DEDEDE] mb-8 px-6 py-4 rounded-xl flex items-center space-x-4 transition-all duration-300 hover:md:shadow-[0_0_15px_rgba(200,200,200,0.3)]"
+      class="bg-[#191919] text-[#DEDEDE] mb-8 px-6 py-4 rounded-xl flex items-center space-x-4 transition-all duration-300 hover:md:shadow-[0_0_15px_rgba(120,120,120,0.28)]"
     >
       <Time />
       <div class="flex space-x-12 md:space-x-48">
