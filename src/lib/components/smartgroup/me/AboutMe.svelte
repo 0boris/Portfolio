@@ -41,7 +41,7 @@
             <div class="h-6 w-6 mr-1.5">
               <Person />
             </div>
-            <span class="font-extrabold">Character</span>
+            <span class="font-[750]">Character</span>
           </div>
           <div class="flex">
             <div class="space-y-2">
@@ -49,7 +49,12 @@
               <span class="text-xs opacity-40"> PLAYER PROPERTIES </span>
               <div class="flex flex-col gap-2">
                 <div class="w-64 rounded-lg bg-gradient-to-b from-[#1d3327] to-[#19271f] border border-[#225639]">
-                  <div class="py-2 px-4 w-52 bg-gradient-to-b from-[#2c985c] to-[#23593b] rounded-lg text-white/50 font-semibold">
+                  <div class="py-2 px-4 w-[77%] bg-gradient-to-b from-[#2c985c] to-[#23593b] rounded-lg text-white/50 font-semibold">
+                    Age: 13
+                  </div>
+                </div>
+                <div class="w-64 rounded-lg bg-gradient-to-b from-[#1d3327] to-[#19271f] border border-[#225639]">
+                  <div class="py-2 px-4 w-[77%] bg-gradient-to-b from-[#2c985c] to-[#23593b] rounded-lg text-white/50 font-semibold">
                     Age: 13
                   </div>
                 </div>
