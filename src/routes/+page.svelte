@@ -63,17 +63,6 @@
     };
   });
 
-  const scrollToOverview = () => {
-    // @ts-ignore
-    document?.getElementById("overview").scrollIntoView({
-      behavior: "smooth",
-    });
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo(0, 0);
-  };
-
   const executeCommand = () => {
     if (inputValue.trim().toLowerCase() === "open popup") {
       showPopup = true;
