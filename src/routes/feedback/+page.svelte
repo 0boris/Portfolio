@@ -4,7 +4,7 @@
     export let form;
 </script>
 
-<div class="h-screen w-full bg-black flex justify-center items-center">
+<div class="h-screen w-full bg-black flex flex-col justify-center items-center">
     <div
         class="flex flex-col w-80 gap-4 bg-gradient-to-br from-[#e45050] via-[#782828] to-black rounded-xl p-6 border border-red-400"
     >
@@ -38,7 +38,7 @@
                     name="improvements"
                     class="rounded-2xl bg-black/50 text-white px-3 py-3 outline-none text-sm"
                     placeholder="What could be better?"
-                    required
+                    
                 ></textarea>
                 <button
                     type="submit"
@@ -47,10 +47,11 @@
                 >
             </form>
             {#if form}
-                <p class="text-white/90 font-semibold">
-                    Uploaded: {form.uploaded}
+                <p class="text-white/60 text-sm font-semibold">
+                    Your submission was successfully uploaded to Vercel. Here's a link: <a class="text-blue-500/90 underline underline-offset-2" href={form.uploaded}>vercel-storage.com</a> 
                 </p>
             {/if}
         </div>
     </div>
+    <span class="mt-3 text-white/50 font-bold text-sm">Please don't abuse this!</span>
 </div>
