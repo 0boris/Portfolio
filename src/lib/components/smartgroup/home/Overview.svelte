@@ -4,6 +4,7 @@
 
   import VideoPlayer from "./cards/VideoPlayer.svelte";
   import Intro from "./cards/Intro.svelte";
+    import QuickInfo from "./cards/QuickInfo.svelte";
 
 
   /* Logic to show the div */
@@ -33,7 +34,7 @@
 
         <div class="w-full">
           <div
-            class="text-white text-sm lg:text-lg mt-6 font-medium grid grid-cols-1 md:grid-cols-2 gap-4"
+            class="text-white text-sm lg:text-lg mt-6 font-medium space-y-4"
           >
             <div
                 transition:scale={{ start: 1.1, duration: 700, delay: 500 }}
@@ -41,8 +42,8 @@
             >
               <Intro />
             </div>
-            <div class="row-span-2 col-span-1" transition:fly={{ x: 250, duration: 500, delay: 1250 }}>
-              pok
+            <div transition:scale={{ start: 1.05, duration: 500, delay: 600 }} class="row-span-2 col-span-1">
+              <QuickInfo />
             </div>
           </div>
         </div>
