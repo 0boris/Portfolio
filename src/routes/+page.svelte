@@ -1,24 +1,18 @@
 <script lang="ts">
   import { onMount } from "svelte";
-
-  /* Import components for the smartbar + overview */
   import Home from "$lib/components/smartbuttons/Home.svelte";
   import Person from "$lib/components/smartbuttons/Person.svelte";
   import Projects from "$lib/components/smartbuttons/Projects.svelte";
   import Team from "$lib/components/smartbuttons/Team.svelte";
   import Music from "$lib/components/smartbuttons/Music.svelte";
   import Cross from "$lib/icons/Cross.svelte";
-
   import Time from "$lib/components/Time.svelte";
   import Info from "$lib/icons/Info.svelte";
-
   import Overview from "$lib/components/smartgroup/home/Overview.svelte";
   import AboutMe from "$lib/components/smartgroup/me/AboutMe.svelte";
   import ProjectsPage from "$lib/components/smartgroup/projects/Projects.svelte";
   import TeamPage from "$lib/components/smartgroup/team/Team.svelte";
   import MusicPage from "$lib/components/smartgroup/music/Music.svelte";
-
-  /* Scroll effect for the tooltip */
   import { fly } from "svelte/transition";
 
   let showScrollText = true;
@@ -27,7 +21,6 @@
   let showPopup = false;
   let activeSmartGroup = "";
 
-  /* Use onMount function to prevent error { window is not defined } */
   onMount(() => {
     setTimeout(() => {
       showScrollText = false;
@@ -44,7 +37,6 @@
 
     const handleKeydown = (event: KeyboardEvent) => {
       if (event.key === "q" && event.ctrlKey) {
-        // Ctrl+K as the shortcut
         showInput = true;
         setTimeout(() => {
           document.getElementById("shortcut-input")?.focus();
@@ -80,7 +72,6 @@
 </script>
 
 <div class="bg-black h-screen flex flex-col justify-center items-center z-50">
-  <span id="topmain">a</span>
   {#if !showScrollText}
     <div
       class="text-white text-4xl md:text-6xl font-bold mb-8"
@@ -236,11 +227,15 @@
   </div>
 </div>
 
-<div id="overview" class="h-screen bg-black -z-50">
-  <div class="h-screen bg-default bg-cover -z-50 flex p-4">
+<div class="h-screen bg-black -z-50">
+  <div class="h-screen bg-default bg-cover -z-50 flex flex-col justify-center items-center p-4 text-white">
     <div
-      class="bg-black/10 text-white h-full w-full p-4 rounded-2xl border-2 border-white/10 backdrop-blur-xl bg-cover"
+      class="bg-black/10 text-white h-full w-full p-4 rounded-2xl backdrop-blur-xl bg-cover"
     >
+      <div class="fixed flex flex-col items-center mb-8 left-1/2 transform -translate-x-1/2">
+        <span class="text-white/80 mb-2">Currently listening to: </span>
+        <div class="relative w-[36rem] h-[2px] bg-gradient-to-r from-black/10 via-white/20 to-black/10"></div>
+      </div>
       {#if activeSmartGroup === "home"}
         <Overview />
       {:else if activeSmartGroup === "about"}

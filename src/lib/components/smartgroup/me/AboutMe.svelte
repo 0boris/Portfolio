@@ -1,15 +1,34 @@
 <script lang="ts">
-  import Time from "$lib/components/Time.svelte";
+  import { tweened } from "svelte/motion";
+  import { cubicInOut } from "svelte/easing";
   import Person from "$lib/icons/Person.svelte";
-  /* Imports for animations. */
-  import { blur } from "svelte/transition";
+  import { blur, scale } from "svelte/transition";
 
-  /* Logic to show the div */
   let isDivVisible = false;
+  let cs2Hours
+
+  const ageWidth = tweened(0, { duration: 1000, easing: cubicInOut });
+  const languagesWidth = tweened(0, { duration: 1000, easing: cubicInOut });
+  const hoursWidth = tweened(0, { duration: 1000, easing: cubicInOut });
 
   const renderDiv = () => {
     isDivVisible = true;
   };
+
+  const fetchHours = () => {
+    const response = fetch("https://api-web.0boris.xyz/getHours", { mode: "no-cors" })
+    response.then(res => res.json()).then(data => {
+      cs2Hours = data.hoursPlayed;
+    }).catch(error => {
+      console.error('Error fetching hours:', error);
+    });
+  }
+
+  $: if (isDivVisible) {
+    ageWidth.set(77);
+    languagesWidth.set(40);
+    hoursWidth.set(52.8)
+  }
 </script>
 
 <div on:pointerenter={renderDiv} class="text-white h-full w-full">
@@ -33,6 +52,7 @@
     <div>
       <div
         class="fixed bottom-0 left-0 right-0 flex justify-center items-end z-50"
+        transition:scale={{ start: 0.5, duration: 400, delay: 200 }}
       >
         <div
           class="bg-[#191919] text-[#DEDEDE] mb-32 px-6 py-4 rounded-xl flex flex-col gap-4"
@@ -45,19 +65,67 @@
           </div>
           <div class="flex">
             <div class="space-y-2">
-              <!-- LocalPlayer part 1 - sliders -->
+              <!-- PART 1 : Sliders -->
               <span class="text-xs opacity-40"> PLAYER PROPERTIES </span>
               <div class="flex flex-col gap-2">
-                <div class="w-64 rounded-lg bg-gradient-to-b from-[#1d3327] to-[#19271f] border border-[#225639]">
-                  <div class="py-2 px-4 w-[77%] bg-gradient-to-b from-[#2c985c] to-[#23593b] rounded-lg text-white/50 font-semibold">
-                    Age: 13
+                <!-- Slider 1: Age -->
+                <div
+                  class="w-64 rounded-lg bg-gradient-to-b from-[#23593b] to-[#19271f] border border-[#23593b] flex items-center"
+                >
+                  <div
+                    class="py-2 h-[40px] px-4 rounded-lg bg-gradient-to-b from-[#2c985d] to-[#236540] text-white/70 font-semibold"
+                    style="width: {$ageWidth}%"
+                  >
+                    <span transition:blur={{ duration: 300, delay: 400 }}
+                      >13</span
+                    >
+                    <span
+                      transition:blur={{ duration: 300, delay: 475 }}
+                      class="opacity-30">/ 18</span
+                    >
                   </div>
+                  <span class="mx-auto opacity-40">Age</span>
                 </div>
-                <div class="w-64 rounded-lg bg-gradient-to-b from-[#1d3327] to-[#19271f] border border-[#225639]">
-                  <div class="py-2 px-4 w-[77%] bg-gradient-to-b from-[#2c985c] to-[#23593b] rounded-lg text-white/50 font-semibold">
-                    Age: 13
+                <!-- End of Slider 1: Age -->
+
+                <!-- Slider 2: Languages Spoken -->
+                <div
+                  class="w-64 rounded-lg bg-gradient-to-b from-[#202d39] to-[#1b232a] border border-[#2a4c69] flex items-center"
+                >
+                  <div
+                    class="py-2 px-4 h-[40px] rounded-lg bg-gradient-to-b from-[#3b7eb7] to-[#2c5478] text-white/50 font-semibold"
+                    style="width: {$languagesWidth}%"
+                  >
+                    <span transition:blur={{ duration: 300, delay: 400 }}
+                      >4</span
+                    >
+                    <span
+                      transition:blur={{ duration: 300, delay: 475 }}
+                      class="opacity-30">/ 10</span
+                    >
                   </div>
+                  <span class="mx-auto opacity-40">Languages</span>
                 </div>
+                <!-- End of Slider 2: Languages Spoken -->
+
+                <!-- Slider 3: Hours of CS2 -->
+                <div
+                class="w-64 rounded-lg bg-gradient-to-b from-[#202d39] to-[#1b232a] border border-[#2a4c69] flex items-center"
+              >
+                <div
+                  class="py-2 px-4 h-[40px] rounded-lg bg-gradient-to-b from-[#3b7eb7] to-[#2c5478] text-white/50 font-semibold"
+                  style="width: {$hoursWidth}%"
+                >
+                  <span transition:blur={{ duration: 300, delay: 400 }}
+                    >4</span
+                  >
+                  <span
+                    transition:blur={{ duration: 300, delay: 475 }}
+                    class="opacity-30">/ 10</span
+                  >
+                </div>
+                <span class="mx-auto opacity-40">Languages</span>
+              </div>
               </div>
             </div>
           </div>

@@ -20,7 +20,7 @@
     <div class="flex flex-row">
       <div class="w-full p-0 lg:p-5">
         <div
-          class="text-white text-md lg:text-2xl font-bold mb-2"
+          class="text-white text-md lg:text-3xl font-bold mb-2"
           transition:blur={{ duration: 500, delay: 300 }}
         >
           Hey there, visitor.
