@@ -252,7 +252,9 @@
       class="bg-black/10 text-white h-full w-full p-4 rounded-2xl backdrop-blur-xl bg-cover"
     >
       <div class="fixed flex flex-col items-center mb-8 left-1/2 transform -translate-x-1/2">
-        <span class="text-white/80 mb-2">Currently listening to: {songName} by {songArtist}</span>
+        <span class="text-white/80 mb-2">
+          {songName == "Not listening to Spotify" ? "Not listening to Spotify. Check back later." : `Listening to ${songName} by ${songArtist}`}
+        </span>
         <div class="relative w-[36rem] h-[2px] bg-gradient-to-r from-black/10 via-white/20 to-black/10"></div>
       </div>
       {#if activeSmartGroup === "home"}

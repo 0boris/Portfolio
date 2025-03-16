@@ -18,7 +18,8 @@
     try {
       const response = await fetch("/api/music/getStatus");
       const data = await response.json();
-      if (data.success) {
+
+      if (data.success && data.songName !== "Not listening to Spotify") {
         songName = data.songName;
         songArtist = data.songArtist;
 
@@ -35,7 +36,7 @@
   }
 
   onMount(() => {
-    socket = new WebSocket("ws://presenceapi.0boris.xyz");
+    socket = new WebSocket("wss://presenceapi.0boris.xyz");
 
     fetchMusicStatus();
     musicInterval = setInterval(fetchMusicStatus, 5000);
