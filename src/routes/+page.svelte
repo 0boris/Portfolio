@@ -5,7 +5,6 @@
   import Projects from "$lib/components/smartbuttons/Projects.svelte";
   import Team from "$lib/components/smartbuttons/Team.svelte";
   import Music from "$lib/components/smartbuttons/Music.svelte";
-  import Cross from "$lib/icons/Cross.svelte";
   import Time from "$lib/components/Time.svelte";
   import Info from "$lib/icons/Info.svelte";
   import Overview from "$lib/components/smartgroup/home/Overview.svelte";
@@ -20,8 +19,28 @@
   let inputValue = "";
   let showPopup = false;
   let activeSmartGroup = "";
+  
+  let musicInterval: number;
+  let songName = "nothing";
+  let songArtist = "sleeping";
+
+  async function fetchMusicStatus() {
+    try {
+      const response = await fetch("/api/music/getStatus");
+      const data = await response.json();
+      if (data.success) {
+        songName = data.songName;
+        songArtist = data.songArtist;
+      }
+    } catch (error) {
+      console.error("Error fetching music status:", error);
+    }
+  }
 
   onMount(() => {
+    fetchMusicStatus();
+    musicInterval = setInterval(fetchMusicStatus, 5000);
+
     setTimeout(() => {
       showScrollText = false;
     }, 500);
@@ -233,7 +252,7 @@
       class="bg-black/10 text-white h-full w-full p-4 rounded-2xl backdrop-blur-xl bg-cover"
     >
       <div class="fixed flex flex-col items-center mb-8 left-1/2 transform -translate-x-1/2">
-        <span class="text-white/80 mb-2">Currently listening to: </span>
+        <span class="text-white/80 mb-2">Currently listening to: {songName} by {songArtist}</span>
         <div class="relative w-[36rem] h-[2px] bg-gradient-to-r from-black/10 via-white/20 to-black/10"></div>
       </div>
       {#if activeSmartGroup === "home"}

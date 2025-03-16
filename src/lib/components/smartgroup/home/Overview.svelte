@@ -2,9 +2,8 @@
   /* Imports for animations. */
   import { fly, scale, blur } from "svelte/transition";
 
-  import VideoPlayer from "./cards/VideoPlayer.svelte";
   import Intro from "./cards/Intro.svelte";
-    import QuickInfo from "./cards/QuickInfo.svelte";
+  import QuickInfo from "./cards/QuickInfo.svelte";
 
 
   /* Logic to show the div */

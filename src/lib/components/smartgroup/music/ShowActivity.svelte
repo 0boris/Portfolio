@@ -1,19 +1,44 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import Spinner from "$lib/components/Spinner.svelte";
   import { blur } from "svelte/transition";
 
   let socket: WebSocket;
+  let musicInterval: number;
 
-  let fileName = "No file name";
-  let languageId = "No language ID";
-  let projectFolder = "No project folder";
+  let primary = "N/A"; // case coding: filename
+  let secondary = "N/A"; // case coding: language
+  let tertiary = "N/A"; // case coding: project folder
   let primaryimg = "?";
   let secondaryimg = "?";
-  let buttons: { [key: string]: string } = { Actions: "https://0boris.xyz/" };
+
+  let songName = "Not listening to Spotify";
+  let songArtist = "Not listening to Spotify";
+
+  async function fetchMusicStatus() {
+    try {
+      const response = await fetch("/api/music/getStatus");
+      const data = await response.json();
+      if (data.success) {
+        songName = data.songName;
+        songArtist = data.songArtist;
+
+        primary = data.songName;
+        secondary = data.songArtist;
+        tertiary = "Listening on Spotify"
+
+        primaryimg = data.songImage;
+        secondaryimg = "https://storage.googleapis.com/pr-newsroom-wp/1/2023/05/Spotify_Primary_Logo_RGB_Green.png"
+      }
+    } catch (error) {
+      console.error("Error fetching music status:", error);
+    }
+  }
 
   onMount(() => {
-    socket = new WebSocket("ws://192.168.0.108:8080");
+    socket = new WebSocket("ws://presenceapi.0boris.xyz");
+
+    fetchMusicStatus();
+    musicInterval = setInterval(fetchMusicStatus, 5000);
 
     socket.onopen = () => {
       console.log("WebSocket connection established");
@@ -25,22 +50,16 @@
       try {
         const data = JSON.parse(event.data);
 
-        switch (data.type) {
-          case "coding":
-            fileName = data.fileName;
-            languageId = data.languageId || "No language ID";
-            projectFolder = data.projectFolder || "No project folder";
-            primaryimg = "https://img.0boris.xyz/vscode.png";
-            if (languageId === "css") {
-              languageId = "css3";
-            } else if (languageId === "html") {
-              languageId = "html5";
-            }
-            secondaryimg = `https://rawcdn.githack.com/devicons/devicon/refs/heads/master/icons/${languageId}/${languageId}-original.svg`;
-            buttons = {
-              "View Repository": data.repo,
-            };
+        primary = data.fileName;
+        secondary = data.languageId || "No language ID";
+        tertiary = data.projectFolder || "No project folder";
+        primaryimg = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/1024px-Visual_Studio_Code_1.35_icon.svg.png";
+        if (secondary === "css") {
+          secondary = "css3";
+        } else if (secondary === "html") {
+          secondary = "html5";
         }
+        secondaryimg = `https://rawcdn.githack.com/devicons/devicon/refs/heads/master/icons/${secondary}/${secondary}-original.svg`;
       } catch (error) {
         console.error("Error parsing JSON data:", error);
       }
@@ -56,13 +75,14 @@
 
     return () => {
       socket.close();
+      clearInterval(musicInterval);
     };
   });
 </script>
 
 <div
   transition:blur={{ duration: 300 }}
-  class="w-full h-1/2 md:h-1/3 rounded-xl bg-black bg-mesh bg-cover relative flex items-center justify-center"
+  class="w-full h-full rounded-xl bg-black bg-mesh bg-cover relative flex items-center justify-center"
 >
   <div class="w-full h-full rounded-xl bg-mesh bg-cover">
     <div class="flex flex-col gap-6 justify-center items-center w-full h-full">
@@ -94,27 +114,15 @@
         </div>
         <div>
           <h1 class="text-lg font-bold">
-            {fileName.substring(fileName.lastIndexOf("\\") + 1)}
+            {primary.substring(primary.lastIndexOf("\\") + 1)}
           </h1>
           <p class="text-sm opacity-70">
-            {languageId.charAt(0).toUpperCase() + languageId.slice(1)}
+            {secondary.charAt(0).toUpperCase() + secondary.slice(1)}
           </p>
           <p class="text-sm opacity-40">
-            {projectFolder.substring(projectFolder.lastIndexOf("\\") + 1)}
+            {tertiary.substring(tertiary.lastIndexOf("\\") + 1)}
           </p>
         </div>
-      </div>
-      <div
-        class="py-3 px-16 bg-black/50 flex items-center justify-center rounded-lg gap-5 mt-[-16px]"
-      >
-        {#each Object.entries(buttons) as [key, value]}
-          <a
-            class="py-1 px-2 transition-all duration-200 bg-white/10 hover:bg-white/20 rounded-md"
-            href={value as string}
-          >
-            {key}
-          </a>
-        {/each}
       </div>
     </div>
   </div>
